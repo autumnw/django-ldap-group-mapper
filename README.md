@@ -44,6 +44,7 @@ Here is an example of the required settings you'll need to put into settings.py:
     AUTH_LDAP_SERVER_URI = "ldap://ldapserver.example.local"
     AUTH_LDAP_BIND_DN = 'CN=LDAP Bind,CN=Users,DC=example,DC=local'
     AUTH_LDAP_BIND_PASSWORD = 'mysupersecretpassword'
+    LDAP_GROUPS_OBJECT_CLASS = 'objectClass=groupOfNames'
 
 	LDAP_GROUPS_OBJECT_CLASS = 'objectClass=groupOfNames'
 	
@@ -95,6 +96,7 @@ At a bare minimum, you need to configure these options:
 * AUTH_LDAP_BIND_DN
 * AUTH_LDAP_BIND_PASSWORD
 * LDAP_GROUPS_BASE_DN
+* LDAP_GROUPS_OBJECT_CLASS
 * LDAP_GROUPS_OBJECT_CLASS
 
 Or else you run the risk of breaking your application.
