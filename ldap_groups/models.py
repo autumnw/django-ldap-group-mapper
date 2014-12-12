@@ -12,6 +12,7 @@ server_uri = settings.AUTH_LDAP_SERVER_URI
 bind_dn = settings.AUTH_LDAP_BIND_DN
 bind_password = settings.AUTH_LDAP_BIND_PASSWORD
 groups_base_dn = settings.LDAP_GROUPS_BASE_DN
+groups_object_class = settings.LDAP_GROUPS_OBJECT_CLASS
 
 def get_ldap_groups():
     dn_choices = []
@@ -22,8 +23,8 @@ def get_ldap_groups():
         logger.warning('%s: %s' % (e.message.get('desc'), server_uri))
         return dn_choices
     for dn, entry in l.search_s(
-        groups_base_dn, ldap.SCOPE_SUBTREE, '(objectClass=group)'):
-        dn_choices += [(dn, entry['name'][0])]
+        groups_base_dn, ldap.SCOPE_SUBTREE, groups_object_class):
+        dn_choices += [(dn, entry['cn'][0])]
     return dn_choices
 
 class LDAPGroupMap(models.Model):
